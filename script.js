@@ -71,7 +71,8 @@ function naechsteVokabel() {
 
     aktuelleVokabel = vokabeln[zufallsIndex];
 
-    ausgabe("Übersetze: " + aktuelleVokabel.englisch);
+    ausgabe("Übersetze: " + aktuelleVokabel.deutsch);
+
 
     document.getElementById("answer").focus();
 }
@@ -92,7 +93,7 @@ function antwortPruefen() {
 
     const richtig =
         antwort.toLowerCase() ===
-        aktuelleVokabel.deutsch.toLowerCase();
+        aktuelleVokabel.englisch.toLowerCase();
 
 
     if (richtig) {
