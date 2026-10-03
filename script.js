@@ -9,7 +9,7 @@ let runde = 0;
 
 async function vokabelnEinlesen() {
     try {
-        const response = await fetch("vokabeln.csv");
+        const response = await fetch("vocabeln.csv");
 
         if (!response.ok) {
             throw new Error("CSV-Datei konnte nicht geladen werden.");
