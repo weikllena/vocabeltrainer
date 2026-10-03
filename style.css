@@ -1,0 +1,44 @@
+ body {
+    margin: 0;
+    background-color: #111;
+    color: #00ff41;
+    font-family: "Courier New", monospace;
+    font-size: 18px;
+}
+
+.terminal {
+    width: 90%;
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+#output {
+    white-space: pre-wrap;
+    line-height: 1.6;
+}
+
+.input-line {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.input-line span {
+    margin-right: 8px;
+}
+
+input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #00ff41;
+    font-family: "Courier New", monospace;
+    font-size: 18px;
+}
+
+input::selection {
+    background-color: #00ff41;
+    color: #111;
+}
+
