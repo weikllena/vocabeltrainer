@@ -18,7 +18,7 @@ async function vokabelnEinlesen() {
         const text = await response.text();
 
         const zeilen = text
-            .split("\n")
+            .split(/\r?\n/)
             .map(zeile => zeile.trim())
             .filter(zeile => zeile.length > 0);
 
@@ -46,16 +46,20 @@ async function vokabelnEinlesen() {
 function neueRunde() {
 
     if (vokabeln.length === 0) {
-        ausgabe("\nFertig! Alle Vokabeln wurden richtig beantwortet.");
+        ausgabe("");
+        ausgabe("Fertig! Alle Vokabeln wurden richtig beantwortet.");
         ausgabe("Du hast " + runde + " Runden gebraucht.");
+
         document.getElementById("answer").disabled = true;
         return;
     }
 
     runde++;
 
-    ausgabe("\nRunde " + runde);
-    ausgabe("Noch " + vokabeln.length + " Wörter!\n");
+    ausgabe("");
+    ausgabe("Runde " + runde);
+    ausgabe("Noch " + vokabeln.length + " Wörter!");
+    ausgabe("");
 
     naechsteVokabel();
 }
@@ -71,8 +75,9 @@ function naechsteVokabel() {
 
     aktuelleVokabel = vokabeln[zufallsIndex];
 
+    // Deutsch wird angezeigt
+    // Englisch wird erwartet
     ausgabe("Übersetze: " + aktuelleVokabel.deutsch);
-
 
     document.getElementById("answer").focus();
 }
@@ -91,6 +96,7 @@ function antwortPruefen() {
         return;
     }
 
+    // Groß-/Kleinschreibung ignorieren
     const richtig =
         antwort.toLowerCase() ===
         aktuelleVokabel.englisch.toLowerCase();
@@ -105,7 +111,11 @@ function antwortPruefen() {
             aktuelleVokabel.englisch
         );
 
-        vokabeln.splice(vokabeln.indexOf(aktuelleVokabel), 1);
+        // Vokabel aus der Liste entfernen
+        vokabeln.splice(
+            vokabeln.indexOf(aktuelleVokabel),
+            1
+        );
 
     } else {
 
@@ -121,7 +131,8 @@ function antwortPruefen() {
 
     input.value = "";
 
-    // Wenn die Runde fertig ist
+
+    // Wenn keine Vokabeln mehr übrig sind
     if (vokabeln.length === 0) {
         neueRunde();
         return;
@@ -145,7 +156,10 @@ function ausgabe(text) {
 
     output.appendChild(zeile);
 
-    window.scrollTo(0, document.body.scrollHeight);
+    window.scrollTo(
+        0,
+        document.body.scrollHeight
+    );
 }
 
 
